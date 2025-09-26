@@ -1,28 +1,64 @@
-# SGD-Classifier
+## SGD-Classifier
 ## AIM:
 To write a program to predict the type of species of the Iris flower using the SGD Classifier.
 
 ## Equipments Required:
-1. Hardware – PCs
-2. Anaconda – Python 3.7 Installation / Jupyter notebook
-
+Hardware – PCs
+Anaconda – Python 3.7 Installation / Jupyter notebook
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
-
+1.Initialize Parameters: Set initial weights (theta) to zero.
+Compute Predictions: Calculate predictions using the sigmoid function on the weighted inputs.
+Calculate Cost: Compute the cost using the cross-entropy loss function.
+Update Weights: Adjust weights by subtracting the gradient of the cost with respect to each weight.
+Repeat: Repeat steps 2–4 for a set number of iterations or until convergence is achieved.
 ## Program:
-```
-/*
+
 Program to implement the prediction of iris species using SGD Classifier.
-Developed by: 
-RegisterNumber:  
-*/
-```
+Developed by: yashwanth asv
+RegisterNumber: 212224230309
+
+    import pandas as pd
+    from sklearn.datasets import load_iris
+    from sklearn.linear_model import SGDClassifier
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import accuracy_score, confusion_matrix
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    
+    iris = load_iris()
+    
+    
+    df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+    df['target'] = iris.target
+    
+    
+    print(df.head())
+    
+    
+    X = df.drop('target', axis=1)
+    y = df['target']
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=42)
+    
+    sgd_clf = SGDClassifier(max_iter=1000, tol=1e-3)
+    
+    sgd_clf.fit(X_train, y_train)
+    
+    y_pred = sgd_clf.predict(X_test)
+    
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Accuracy: {accuracy:.3f}")
+    
+    cm = confusion_matrix(y_test, y_pred)
+    print("Confusion Matrix:")
+    print(cm)
 
 ## Output:
-![prediction of iris species using SGD Classifier](sam.png)
+<img width="239" height="117" alt="494248247-512980a5-2515-4853-b1ca-2fe1ee22a7d0" src="https://github.com/user-attachments/assets/4775df59-73ce-4bde-add7-0ca252a2cbb4" />
+
+<img width="228" height="34" alt="494248219-ff145ac5-c031-4d19-b5f7-1a87226b6ded" src="https://github.com/user-attachments/assets/b390d199-f36e-4e9b-911b-3756a47ac23c" />
+
+<img width="781" height="280" alt="494248182-a78e081d-8602-41be-aa24-ba8a0e4f40bb" src="https://github.com/user-attachments/assets/7d53592d-c62e-4231-9318-ddf2b5817a90" />
 
 
 ## Result:
